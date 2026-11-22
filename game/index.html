@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="icon" href="data:,">
+<title>Aurora Falls — a snowbound open-world crime story</title>
+<style>
+  html, body { margin: 0; padding: 0; overflow: hidden; background: #0a1424; height: 100%;
+    font-family: 'Segoe UI', Arial, sans-serif; color: #e8f0ff; }
+  #app, #app canvas { position: fixed; inset: 0; }
+  #ui { position: fixed; inset: 0; pointer-events: none; z-index: 10; }
+  .hidden { display: none !important; }
+  #hud { position: absolute; inset: 0; }
+  #top-left { position: absolute; top: 14px; left: 16px; text-shadow: 0 1px 4px #000; }
+  #stars { font-size: 26px; letter-spacing: 4px; color: #ffd27f; }
+  #healthbar { width: 180px; height: 10px; background: rgba(0,0,0,.55); border: 1px solid #8899bb; margin-top: 6px; }
+  #healthfill { height: 100%; width: 100%; background: #54c96b; }
+  #money { font-size: 22px; font-weight: 700; margin-top: 6px; }
+  #rank { font-size: 13px; opacity: .85; }
+  #objective { position: absolute; top: 14px; left: 50%; transform: translateX(-50%);
+    background: rgba(5,12,26,.72); border: 1px solid #3a5a8a; padding: 8px 16px; border-radius: 6px;
+    font-size: 15px; max-width: 46vw; text-align: center; }
+  #top-right { position: absolute; top: 14px; right: 16px; text-align: right; }
+  #minimap { border: 2px solid #3a5a8a; border-radius: 6px; background: rgba(5,12,26,.8); }
+  #district { font-size: 13px; margin-top: 4px; text-shadow: 0 1px 4px #000; }
+  #bottom-right { position: absolute; right: 18px; bottom: 16px; text-align: right; text-shadow: 0 1px 4px #000; }
+  #speed { font-size: 44px; font-weight: 800; line-height: 1; }
+  #speedunit, #gear { font-size: 13px; opacity: .85; }
+  #bottom-left { position: absolute; left: 16px; bottom: 16px; text-shadow: 0 1px 4px #000; }
+  #weapon { font-size: 17px; font-weight: 700; }
+  #radio { font-size: 13px; opacity: .85; }
+  #crosshair { position: absolute; left: 50%; top: 50%; transform: translate(-50%,-50%);
+    font-size: 22px; color: rgba(255,255,255,.85); text-shadow: 0 0 6px #000; }
+  #toast { position: absolute; left: 50%; bottom: 110px; transform: translateX(-50%);
+    background: rgba(5,12,26,.8); border: 1px solid #ffd27f; color: #ffd27f;
+    padding: 8px 18px; border-radius: 6px; font-size: 15px; }
+  #wheel { position: absolute; left: 50%; top: 58%; transform: translate(-50%,-50%);
+    background: rgba(5,12,26,.85); border: 1px solid #3a5a8a; border-radius: 8px; padding: 10px 16px; }
+  .wslot { padding: 5px 8px; font-size: 15px; }
+  .wslot.sel { background: #ffd27f; color: #0a1424; border-radius: 4px; }
+  #interact { position: absolute; left: 50%; bottom: 170px; transform: translateX(-50%);
+    background: rgba(5,12,26,.8); border: 1px solid #54c96b; color: #9fe8a8;
+    padding: 6px 14px; border-radius: 6px; }
+  .screen { position: absolute; inset: 0; display: flex; flex-direction: column; align-items: center;
+    justify-content: center; background: linear-gradient(180deg, rgba(6,12,26,.55), rgba(6,12,26,.88));
+    pointer-events: auto; text-align: center; padding: 20px; }
+  .screen h1 { font-size: 64px; margin: 0; letter-spacing: 6px;
+    background: linear-gradient(90deg, #7fd4ff, #7dff9e, #c9a7ff); -webkit-background-clip: text;
+    background-clip: text; color: transparent; text-shadow: 0 0 30px rgba(127,212,255,.35); }
+  .screen .sub { font-size: 18px; margin: 10px 0 4px; }
+  .screen .crew, .screen .missions, .screen .controls, .screen .hint { font-size: 14px; opacity: .85; margin: 4px 0; }
+  .screen button { pointer-events: auto; margin-top: 18px; font-size: 20px; font-weight: 700;
+    padding: 12px 42px; border-radius: 8px; border: 2px solid #ffd27f; background: #ffd27f; color: #0a1424;
+    cursor: pointer; }
+  .screen button:hover { background: #ffe1a1; }
+  .screen button:disabled { opacity: .45; cursor: default; }
+  #upgrades { text-align: left; margin-top: 10px; }
+  .upg { margin: 6px 0; font-size: 15px; }
+  .upg button { font-size: 14px; padding: 4px 14px; margin: 0 0 0 10px; }
+</style>
+</head>
+<body>
+<div id="app"></div>
+<div id="ui"></div>
+<script type="importmap">
+{ "imports": { "three": "./vendor/three.module.min.js" } }
+</script>
+<script type="module" src="./src/main.js"></script>
+</body>
+</html>
